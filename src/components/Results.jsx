@@ -4,6 +4,14 @@ import { calculateInvestmentResults, formatter } from '../util/investment.js';
 export default function Results({ input }) {
   const results = [];
   calculateInvestmentResults(input, results);
+
+  if (results.length === 0) {
+    return <p className='center'>Please input only positive numbers!</p>
+  } else if (results.length > 100) {
+    return <p className='center'>Please input a duration no longer than 100 years!</p>
+  }
+
+
   const initialInvestment =
     results[0].valueEndOfYear -
     results[0].interest -
